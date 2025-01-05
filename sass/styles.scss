@@ -1,0 +1,215 @@
+/** @format */
+
+@use "variables";
+@use "mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: variables.$Very-light-grayish-cyan;
+  font-family: "Space Mono", monospace;
+}
+
+.header__title {
+  text-align: center;
+  color: variables.$Dark-grayish-cyan;
+  font-size: variables.$font-size;
+  margin: 30px 0;
+  letter-spacing: 8px;
+}
+
+.calculator-container {
+  background-color: variables.$White;
+  width: 375px;
+  margin: auto;
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid variables.$Light-grayish-cyan;
+}
+
+.inputs-section__bill-label {
+  @include mixins.label;
+}
+
+.inputs-section__bill-input {
+  &::placeholder {
+    color: variables.$Grayish-cyan;
+  }
+  @include mixins.input("../../images/icon-dollar.svg");
+}
+
+.btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+
+  &__legend {
+    @include mixins.label;
+    border: none;
+  }
+
+  &__custom {
+    @include mixins.input(unset);
+    text-align: center;
+    color: variables.$Dark-grayish-cyan;
+  }
+}
+
+fieldset {
+  border: none;
+}
+
+.btns__button {
+  width: 147px;
+  height: 50px;
+  background-color: variables.$Strong-dark-cyan;
+  color: variables.$White;
+  border-radius: 4px;
+  font-family: variables.$font;
+  font-size: variables.$font-size;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--selected {
+    background-color: variables.$Strong-cyan;
+    color: variables.$Strong-dark-cyan;
+  }
+}
+
+.error {
+  color: rgb(164, 68, 68);
+  font-size: 1em;
+  text-align: right;
+}
+
+.error::after {
+  content: "Can't be zero";
+  color: rgb(164, 68, 68);
+  font-size: 1em;
+  display: block;
+  margin-top: -15px;
+  text-align: right;
+}
+
+.inputs-section__people-label {
+  @include mixins.label;
+}
+.inputs-section__people-input {
+  &::placeholder {
+    color: variables.$Grayish-cyan;
+  }
+
+  @include mixins.input("../../images/icon-person.svg");
+}
+
+.result-section {
+  background-color: variables.$Strong-dark-cyan;
+  color: variables.$Very-light-grayish-cyan;
+  border-radius: 12px;
+  padding: 42px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  &__tip-amount {
+    font-size: 0.75em;
+  }
+  &__tip-person {
+    font-size: 0.65em;
+  }
+  &__tip-value {
+    font-size: 1.2em;
+    color: variables.$Strong-cyan;
+    text-align: right;
+  }
+
+  &__total-amount {
+    @extend .results__tip-amount;
+  }
+
+  &__total-person {
+    @extend .results__tip-person;
+  }
+
+  &__total-value {
+    @extend .results__tip-value;
+  }
+}
+
+.result-section__reset {
+  background-color: variables.$Dark-grayish-cyan;
+  height: 50px;
+  color: variables.$Strong-dark-cyan;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: variables.$font;
+  border: none;
+  border-radius: 4px;
+  &:hover {
+    cursor: pointer;
+    background-color: variables.$Light-grayish-cyan;
+  }
+}
+/* --------------------(Footer)------------------------*/
+
+.attribution {
+  font-size: 0.67em;
+  text-align: center;
+  margin: 40px 0;
+}
+.attribution a {
+  color: variables.$Blue;
+  text-decoration: none;
+}
+
+/* --------------------(Desktop)------------------------*/
+
+@media only screen and (min-width: 1440px) {
+  .header__title {
+    margin: 160px 0 90px;
+  }
+
+  .calculator-container {
+    width: 900px;
+    display: flex;
+    gap: 50px;
+  }
+  .inputs-section {
+    flex: 1;
+  }
+  .result-section {
+    flex: 1;
+  }
+
+  .btns {
+    grid-template-columns: repeat(3, 1fr);
+    &__button {
+      width: 120px;
+    }
+  }
+
+  .results {
+    &__tip-value {
+      font-size: 2em;
+    }
+
+    &__total-value {
+      font-size: 2em;
+    }
+  }
+}
